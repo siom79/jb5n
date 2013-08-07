@@ -110,3 +110,7 @@ Define the InvocationHandler via the @MessageResource annotation:
 * [Compiler aware internationalization](http://blog.codecentric.de/en/2012/01/compiler-aware-internationalization-i18n-with-java-resourcebundle/): Blog entry about the concept.
 * [Owner](https://github.com/lviggiano/owner/): Simple implementation of the concept.
 * [C10N](https://github.com/rodionmoiseev/c10n): Java library that uses resource bundles and annotations to provide translations.
+
+##Development##
+
+* [Jenkins build server](https://siom79.ci.cloudbees.com/job/jb5n) [![Build Status](https://siom79.ci.cloudbees.com/job/jb5n/badge/icon)](https://siom79.ci.cloudbees.com/job/jb5n)
