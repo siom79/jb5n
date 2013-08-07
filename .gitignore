@@ -4,3 +4,5 @@ jb5n/.settings/*
 .settings/*
 .classpath
 .project
+*.iml
+.idea
