@@ -1,0 +1,6 @@
+target/*
+jb5n/target/*
+jb5n/.settings/*
+.settings/*
+.classpath
+.project
