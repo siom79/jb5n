@@ -21,6 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <github.account>siom79</github.account>
         <cloudbees.account>siom79</cloudbees.account>
+        <slf4j.version>1.7.5</slf4j.version>
     </properties>
 
     <dependencies>
@@ -33,6 +34,7 @@
     </dependencies>
     <modules>
         <module>jb5n</module>
+        <module>jb5n-maven-plugin</module>
     </modules>
 
     <build>

@@ -6,3 +6,4 @@ jb5n/.settings/*
 .project
 *.iml
 .idea
+jb5n-maven-plugin/target/*

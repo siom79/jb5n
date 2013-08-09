@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 import jb5n.api.properties.JB5nPropertiesInvocationHandler;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(value = { ElementType.TYPE })
+@Target(value = {ElementType.TYPE})
 public @interface MessageResource {
-	Class<? extends JB5nInvocationHandler> invocationHandler() default JB5nPropertiesInvocationHandler.class;
+    Class<? extends JB5nInvocationHandler> invocationHandler() default JB5nPropertiesInvocationHandler.class;
 
-	String resourceBundleName() default "";
+    String resourceBundleName() default "";
 }

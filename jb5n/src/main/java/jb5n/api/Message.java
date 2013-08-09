@@ -6,9 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(value = { ElementType.METHOD })
+@Target(value = {ElementType.METHOD})
 public @interface Message {
-	String defaultMessage() default "";
+    String defaultMessage() default "";
 
-	String key() default "";
+    String key() default "";
 }
