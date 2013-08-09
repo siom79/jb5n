@@ -24,6 +24,42 @@ Planned features (not yet available):
 
 ##Usage##
 
+###Maven setup###
+
+####Releases####
+
+Add the following repository to your pom.xml:
+
+    <repository>
+        <id>jb5n-snapshot-repository</id>
+        <url>https://repository-siom79.forge.cloudbees.com/release</url>
+    </repository>
+
+Add the following dependency to your pom.xml:
+
+    <dependency>
+        <artifactId>jb5n</artifactId>
+        <groupId>jb5n</groupId>
+        <version>0.0.1</version>
+    </dependency>
+
+####Snapshot releases####
+
+To get the latest snapshot release add the following repository to your pom.xml:
+
+    <repository>
+        <id>jb5n-snapshot-repository</id>
+        <url>https://repository-siom79.forge.cloudbees.com/snapshot</url>
+    </repository>
+
+Add the following dependency to your pom.xml:
+
+    <dependency>
+        <artifactId>jb5n</artifactId>
+        <groupId>jb5n</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
 ###Basics###
 
 Just create an interface with some methods that return a String:
@@ -114,3 +150,4 @@ Define the InvocationHandler via the @MessageResource annotation:
 ##Development##
 
 * [Jenkins build server](https://siom79.ci.cloudbees.com/job/jb5n) [![Build Status](https://siom79.ci.cloudbees.com/job/jb5n/badge/icon)](https://siom79.ci.cloudbees.com/job/jb5n)
+* [Maven snapshot repository](https://repository-siom79.forge.cloudbees.com/snapshot)
