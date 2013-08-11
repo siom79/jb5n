@@ -14,7 +14,16 @@ import jb5n.internal.MessageResourceVerification;
 
 public class JB5nPropertiesSync {
 
-    public static <T> List<String> sync(Class<T> clazz, Locale locale, ClassLoader classLoader) {
+    public static class JB5nPropertiesSyncResult {
+        private List<String> missingResourceKeys = new LinkedList<String>();
+
+        public List<String> getMissingResourceKeys() {
+            return missingResourceKeys;
+        }
+    }
+
+    public static <T> JB5nPropertiesSyncResult sync(Class<T> clazz, Locale locale, ClassLoader classLoader) {
+        JB5nPropertiesSyncResult result = new JB5nPropertiesSyncResult();
         MessageResourceVerification.verify(clazz, locale, classLoader);
         String resourceBundleName = JB5nPropertiesInvocationHandler.deriveResourceBundleName(clazz);
         ResourceBundle resourceBundle = null;
@@ -23,7 +32,7 @@ public class JB5nPropertiesSync {
         } catch (MissingResourceException e) {
             throw new JB5nException(Reason.MissingResource, String.format("Resource bundle '%s' is missing: %s.", resourceBundleName, e.getMessage()), e);
         }
-        List<String> missingResourceKeys = new LinkedList<String>();
+        List<String> missingResourceKeys = result.getMissingResourceKeys();
         Method[] methods = clazz.getMethods();
         for (Method method : methods) {
             String methodName = method.getName();
@@ -35,6 +44,6 @@ public class JB5nPropertiesSync {
                 missingResourceKeys.add(resourceKey);
             }
         }
-        return missingResourceKeys;
+        return result;
     }
 }

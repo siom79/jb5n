@@ -16,9 +16,9 @@ public class JB5nPropertiesSyncTest {
 
 	@Test
 	public void testSync() {
-		List<String> missingResourceKeys = JB5nPropertiesSync.sync(MySyncMessageResource.class, new Locale("de_DE"), JB5nPropertiesSyncTest.class.getClassLoader());
-		assertThat(missingResourceKeys, hasItem("missingResource"));
-		assertThat(missingResourceKeys, hasItem("custom.key.notAvailable"));
+        JB5nPropertiesSync.JB5nPropertiesSyncResult result = JB5nPropertiesSync.sync(MySyncMessageResource.class, new Locale("de_DE"), JB5nPropertiesSyncTest.class.getClassLoader());
+		assertThat(result.getMissingResourceKeys(), hasItem("missingResource"));
+		assertThat(result.getMissingResourceKeys(), hasItem("custom.key.notAvailable"));
 	}
 
 	private interface MessageResourceWithoutPropertiesFile {

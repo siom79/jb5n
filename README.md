@@ -17,9 +17,6 @@ The Google Web Toolkit (GWT) comes with a mechanism called [Messages interface](
 * **Default messages**: If no message is found for a called message a default message can be defined via annotation. This way you can speed up development time as during development you only have to specify the default message. Further translations can be done later on.
 * **Message format**: You can pass arguments to the methods, that are applied to the resource string via the standard [MessageFormat](http://docs.oracle.com/javase/6/docs/api/java/text/MessageFormat.html) mechanism.
 * **Missing resource behaviour**: The behavior in case a resource string from the properties file is missing is configurable. You can either let jb5n throw an exception (recommended during development) or output the name of the method as translation (fail safe behavior).
-
-Planned features (not yet available):
-
 * **maven plugin**: A maven plugin that optionally checks during the build process that for each message method a corresponding key/value pair is available for all supported languages.
 
 ##Usage##
@@ -40,7 +37,7 @@ Add the following dependency to your pom.xml:
     <dependency>
         <artifactId>jb5n</artifactId>
         <groupId>jb5n</groupId>
-        <version>0.0.1</version>
+        <version>0.0.2</version>
     </dependency>
 
 ####Snapshot releases####
@@ -57,10 +54,10 @@ Add the following dependency to your pom.xml:
     <dependency>
         <artifactId>jb5n</artifactId>
         <groupId>jb5n</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.3-SNAPSHOT</version>
     </dependency>
 
-###Basics###
+###Basic usage###
 
 Just create an interface with some methods that return a String:
 
@@ -79,21 +76,21 @@ Now retrieve a proxy for the interface and access the messages via methods:
 	MyMessageResource myMessageResource = JB5n.createInstance(MyMessageResource.class);
 	String ok = myMessageResource.ok();
 
-###Default messages###
+####Default messages####
 
 In order to speed up development time, you can add a default message for each method:
 
 	@Message(defaultMessage = "OK")
 	String ok();
 
-###User specific key###
+####User specific key####
 
 Per default, the method name is used as key in the properties file. To migrate existing projects you can define the key as annotation:
 
 	@Message(key = "no.default.key")
 	String noDefaultKey();
 
-###User specific resource bundle###
+####User specific resource bundle####
 
 Per default the resource bundle is derived from the class name. But you can define the resource bundle name via annotation for each interface separately:
 
@@ -102,7 +99,7 @@ Per default the resource bundle is derived from the class name. But you can defi
 		String ok();
 	}
 
-###Inheritance###
+####Inheritance####
 
 Message can be inherited from a common super interface:
 
@@ -118,7 +115,7 @@ Now a call of ok() will retrieve the message from MyMessageResource.properties, 
 
 If you want to use the same file for both interfaces, just use the resourceBundleName attribute of @MessageResource and let both interfaces point to the same resource.
 
-###Message format###
+####Message format####
 
 You can pass arguments to the methods that are incorporated into the message using the standard Java [MessageFormat](http://docs.oracle.com/javase/6/docs/api/java/text/MessageFormat.html):
 
@@ -126,7 +123,7 @@ You can pass arguments to the methods that are incorporated into the message usi
 		String youHaveNREtries(int numberOfRetries); // "You have {0} retries."
 	}
 
-###Extensible###
+####Extensible####
 
 If your messages are not stored within properties files, you can implement your own mechanism to retrieve the messages. Just create a class that implements the interface JB5nInvocationHandler:
 
@@ -140,6 +137,48 @@ Define the InvocationHandler via the @MessageResource annotation:
 	private interface MyInvocationHandler {
 		String ok();
 	}
+
+###Maven plugin###
+
+There is also a maven plugin available that can be used to check during the build process if for each method in a MessageResource interface an appropriate key/value pair in the
+ResourceBundle exists. To use the plugin, simply add the following lines to your pom.xml:
+
+    <repository>
+        <id>jb5n-snapshot-repository</id>
+        <url>https://repository-siom79.forge.cloudbees.com/release</url>
+    </repository>
+    ...
+    <plugins>
+        <plugin>
+            <groupId>jb5n</groupId>
+            <artifactId>jb5n-maven-plugin</artifactId>
+            <version>0.0.2</version>
+            <executions>
+                <execution>
+                    <id>test</id>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>verify</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <message-interfaces>
+                    <message-interface>jb5n.client.MyMessages</message-interface>
+                </message-interfaces>
+                <locales>
+                    <locale>de_de</locale>
+                </locales>
+                <breakBuild>true</breakBuild>
+            </configuration>
+        </plugin>
+    </plugins>
+
+The plugin verifies the artifact that is created by the pom where it is configured for. This way you can add the plugin only to the artifacts which you want to verify.
+Interfaces that are already annotated with @MessageResource are detected automatically by the plugin, all interfaces without the annotation can be added using
+the <message-interface> configuration tag (see above). You also need to add the locales you want to support, so that the plugin can verify the ResourceBundle
+for each supported locale. There is also an option to configure if the build should break, if there is at least one method that has no corresponding key/value
+pair in the ResourceBundle.
 
 ##Alternatives##
 

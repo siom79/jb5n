@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>jb5n-base</artifactId>
+        <groupId>jb5n</groupId>
+        <version>0.0.2-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>jb5n-maven-plugin-test</artifactId>
+    <packaging>jar</packaging>
+
+    <name>jb5n-maven-plugin-test</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>jb5n</groupId>
+            <artifactId>jb5n-maven-plugin</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>jb5n</groupId>
+                <artifactId>jb5n-maven-plugin</artifactId>
+                <version>${project.version}</version>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <message-interfaces>
+                        <message-interface>jb5n.client.MyMessages</message-interface>
+                    </message-interfaces>
+                    <locales>
+                        <locale>de_de</locale>
+                    </locales>
+                    <breakBuild>true</breakBuild>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

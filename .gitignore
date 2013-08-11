@@ -7,3 +7,4 @@ jb5n/.settings/*
 *.iml
 .idea
 jb5n-maven-plugin/target/*
+jb5n-maven-plugin-test/target/*
