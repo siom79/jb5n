@@ -1,9 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>jb5n</groupId>
     <artifactId>jb5n-base</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>jb5n-base</name>
@@ -107,8 +108,7 @@
         <connection>scm:git:git://github.com/${github.account}/${project.groupId}.git</connection>
         <developerConnection>scm:git:git@github.com:${github.account}/${project.groupId}.git</developerConnection>
         <url>http://github.com/${github.account}/${project.groupId}/tree/master/</url>
-      <tag>jb5n-base-0.0.2</tag>
-  </scm>
+    </scm>
     <distributionManagement>
         <repository>
             <id>cloudbees-public-release</id>
