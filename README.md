@@ -183,7 +183,7 @@ pair in the ResourceBundle.
 ##Alternatives##
 
 * [Compiler aware internationalization](http://blog.codecentric.de/en/2012/01/compiler-aware-internationalization-i18n-with-java-resourcebundle/): Blog entry about the concept.
-* [Owner](https://github.com/lviggiano/owner/): Simple implementation of the concept.
+* [Owner](https://github.com/lviggiano/owner/): Implementation of the concept for configuration purposes.
 * [C10N](https://github.com/rodionmoiseev/c10n): Java library that uses resource bundles and annotations to provide translations.
 
 ##Development##
