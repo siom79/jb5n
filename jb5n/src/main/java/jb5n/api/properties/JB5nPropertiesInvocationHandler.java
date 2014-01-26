@@ -44,17 +44,15 @@ public class JB5nPropertiesInvocationHandler implements JB5nInvocationHandler {
         if (resourceBundle != null) {
             String resourceKey = deriveResourceKey(methodName, messageAnnotationFromMethod);
             try {
-                String message = resourceBundle.getString(resourceKey);
-                if (methodArgs != null && methodArgs.length > 0) {
-                    MessageFormat messageFormat = new MessageFormat(message);
-                    returnValue = messageFormat.format(methodArgs);
-                } else {
-                    returnValue = message;
-                }
+                returnValue = resourceBundle.getString(resourceKey);
             } catch (MissingResourceException e) {
                 returnValue = handleMissingResourceException(methodName, messageAnnotationFromMethod,
                         String.format("Missing key '%s' in resource bundle '%s' for locale '%s'.", resourceKey, resourceBundleName, defaultLocale));
             }
+        }
+        if (methodArgs != null && methodArgs.length > 0) {
+            MessageFormat messageFormat = new MessageFormat(returnValue);
+            returnValue = messageFormat.format(methodArgs);
         }
         return returnValue;
     }
